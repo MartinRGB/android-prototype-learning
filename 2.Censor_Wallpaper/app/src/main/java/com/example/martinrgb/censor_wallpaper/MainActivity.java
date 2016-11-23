@@ -69,7 +69,7 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
     private static final SpringConfig mconfig = SpringConfig.fromOrigamiTensionAndFriction(66, 10);
     private SpringSystem mSpringSystem;
     private Spring mSpring;
-    private Spring backtoZeroSpring;
+    private Spring backtoZeroSpring,backtoSquareZeroSpring;
     private SpringConfiguratorView mSpringConfiguratorView;
 
     private long startTime,currentTime;
@@ -233,6 +233,7 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
         else if (eyeScaledUp == true && (Math.round(message.getDistToFace()) > 26f)){
             mSpring.setEndValue(0);
             backtoZeroSpring.setEndValue(1);
+            backtoSquareZeroSpring.setEndValue(0);
             eyeScaledUp = false;
             isScaledUp = false;
         }
@@ -290,6 +291,8 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
         mSpring.setSpringConfig(mconfig);
         backtoZeroSpring = mSpringSystem.createSpring();
         backtoZeroSpring.setSpringConfig(mconfig);
+        backtoSquareZeroSpring = mSpringSystem.createSpring();
+        backtoSquareZeroSpring.setSpringConfig(mconfig);
 
         mSpring.addListener(new SimpleSpringListener() {
 
@@ -308,6 +311,7 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
             }
         });
 
+
         backtoZeroSpring.addListener(new SimpleSpringListener() {
 
             @Override
@@ -316,8 +320,19 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
                 // state by asking its current value in onSpringUpdate.
                 float value = (float) backtoZeroSpring.getCurrentValue();
                 float newTransition = (float) SpringUtil.mapValueFromRangeToRange(value, 0, 1, findViewById(R.id.image).getX(), 0);
-                float newSquareTransition = (float) SpringUtil.mapValueFromRangeToRange(value, 0, 1, 343, findViewById(R.id.image).getX());
                 findViewById(R.id.image).setX(newTransition);
+            }
+        });
+
+
+        backtoSquareZeroSpring.addListener(new SimpleSpringListener() {
+
+            @Override
+            public void onSpringUpdate(Spring backtoSquareZeroSpring) {
+                // You can observe the updates in the spring
+                // state by asking its current value in onSpringUpdate.
+                float value = (float) backtoSquareZeroSpring.getCurrentValue();
+                float newSquareTransition = (float) SpringUtil.mapValueFromRangeToRange(value, 0, 1, 343, findViewById(R.id.image).getX());
                 findViewById(R.id.square).setX(newSquareTransition);
             }
         });
@@ -338,6 +353,7 @@ public class MainActivity extends AutoLayoutActivity implements MessageListener 
                 else{
                     mSpring.setEndValue(0);
                     backtoZeroSpring.setEndValue(1);
+                    backtoSquareZeroSpring.setEndValue(0);
                 }
 
             }
