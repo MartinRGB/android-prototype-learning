@@ -30,3 +30,15 @@ What I Learned:
 5.Use facebok rebound library to make spring animation.
 
 6.Use [TinyDancer](https://github.com/friendlyrobotnyc/TinyDancer) to detect fps
+
+##Project3:Small Games
+
+![](https://github.com/MartinRGB/android-prototype-learning/blob/master/gifs/3.png?raw=true)
+
+What I Learned:
+
+1.Build class's Constructor & Getter & Setter
+
+2.Inheritance & Extend from superclass,how to build an method override superclass' method
+
+3.Make simple interface
