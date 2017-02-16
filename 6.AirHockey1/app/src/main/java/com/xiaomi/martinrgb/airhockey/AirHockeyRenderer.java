@@ -70,7 +70,17 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
                 0.5f, 0f,
                 //Mallets
                 0f, -0.25f,
-                0f,  0.25f
+                0f,  0.25f,
+
+                //Border Tri1
+                -0.6f,-0.56f,
+                0.6f,0.56f,
+                -0.6f,0.56f,
+
+                //Border Tri2
+                -0.6f,-0.56f,
+                0.6f,-0.56f,
+                0.6f,0.56f,
         };
 
         //每个浮点4个字节，根据数组数量，分配相应大小本地内存，不受垃圾回收控制
@@ -99,7 +109,7 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         int vertexShader = ShaderHelper.complieVertexShader(vertexShaderSource);
         int fragmentShader = ShaderHelper.complieFragmentShader(fragmentShaderSource);
 
-        //链接顶点着色器和片段着色器，构建对象
+        //链接顶点着色器和片段着色器，构建程序对象
         program = ShaderHelper.linkProgram(vertexShader,fragmentShader);
 
         //验证 OPENGL
@@ -140,6 +150,10 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         //擦除屏幕上所有颜色，并用之前的glClearColor()调用定义颜色
         glClear(GL_COLOR_BUFFER_BIT);
 
+        //绘制Border
+        colorGLUniform4f(uColorLocation, 34f,73f,111f,1.0f);
+        glDrawArrays(GL_TRIANGLES,10,6);
+
         //## 绘制两个三角形
         //glUniform4f更新着色器GLSL文件中的u_Color值
         glUniform4f(uColorLocation,1.0f,1.0f,1.0f,1.0f);
@@ -155,6 +169,12 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         glDrawArrays(GL_POINTS,8,1);
         glUniform4f(uColorLocation,1.0f,0.0f,0.0f,1.0f);
         glDrawArrays(GL_POINTS,9,1);
+
+    }
+
+    public void colorGLUniform4f(int location,float red,float green,float blue,float alpha){
+
+        glUniform4f(location,red/255f,green/255f,blue/255f,alpha);
 
     }
 
