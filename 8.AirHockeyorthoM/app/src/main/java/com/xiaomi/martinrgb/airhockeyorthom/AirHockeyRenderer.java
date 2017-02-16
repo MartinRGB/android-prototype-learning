@@ -1,12 +1,13 @@
-package com.xiaomi.martinrgb.airhockey2;
+package com.xiaomi.martinrgb.airhockeyorthom;
 
 import android.content.Context;
+import android.graphics.Matrix;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 
-import com.xiaomi.martinrgb.airhockey2.util.LoggerConfig;
-import com.xiaomi.martinrgb.airhockey2.util.ShaderHelper;
-import com.xiaomi.martinrgb.airhockey2.util.TextResourceReader;
+import com.xiaomi.martinrgb.airhockeyorthom.util.LoggerConfig;
+import com.xiaomi.martinrgb.airhockeyorthom.util.ShaderHelper;
+import com.xiaomi.martinrgb.airhockeyorthom.util.TextResourceReader;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -15,20 +16,9 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import static android.opengl.GLES20.GL_COLOR_BUFFER_BIT;
-import static android.opengl.GLES20.GL_FLOAT;
-import static android.opengl.GLES20.GL_LINES;
-import static android.opengl.GLES20.GL_POINTS;
-import static android.opengl.GLES20.GL_TRIANGLES;
-import static android.opengl.GLES20.GL_TRIANGLE_FAN;
 import static android.opengl.GLES20.glClear;
-import static android.opengl.GLES20.glClearColor;
 import static android.opengl.GLES20.glDrawArrays;
-import static android.opengl.GLES20.glEnableVertexAttribArray;
-import static android.opengl.GLES20.glGetAttribLocation;
-import static android.opengl.GLES20.glGetUniformLocation;
-import static android.opengl.GLES20.glUniform4f;
-import static android.opengl.GLES20.glUseProgram;
+import static android.opengl.GLES20.glUniformMatrix4fv;
 import static android.opengl.GLES20.glVertexAttribPointer;
 import static android.opengl.GLES20.glViewport;
 
@@ -56,6 +46,11 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     private final Context context;
     private int program;
 
+    //旋转矩阵
+    private static final String U_MATRIX = "u_Matrix";
+    private final float[] projectionMatrix = new float[16];
+    private int uMatixLocation;
+
 
     public AirHockeyRenderer(Context context){
         this.context = context;
@@ -69,17 +64,17 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
                 //无论是x还是y OpenGL 都会将屏幕映射到 [-1,1] (百分比) 的范围内。所以我们要将之前定义的坐标做一些改变。
                 //Table
                 0f,0f,1f,1f,1f,
-                -0.5f,-0.5f,0.7f,0.7f,0.7f,
-                0.5f,-0.5f,0.7f,0.7f,0.7f,
-                0.5f, 0.5f,0.7f,0.7f,0.7f,
-                -0.5f, 0.5f,0.7f,0.7f,0.7f,
-                -0.5f,-0.5f,0.7f,0.7f,0.7f,
+                -0.5f,-0.88f,0.7f,0.7f,0.7f,
+                0.5f,-0.88f,0.7f,0.7f,0.7f,
+                0.5f, 0.88f,0.7f,0.7f,0.7f,
+                -0.5f, 0.88f,0.7f,0.7f,0.7f,
+                -0.5f,-0.88f,0.7f,0.7f,0.7f,
                 //Line 1
                 -0.5f,0f,1f,0f,0f,
                 0.5f,0f,1f,0f,0f,
                 //Mallets
-                0f,-0.25f,0f,0f,1f,
-                0f,0.25f,1f,0f,0f
+                0f,-0.44f,0f,0f,1f,
+                0f,0.44f,1f,0f,0f
 
         };
 
@@ -124,6 +119,8 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
         aColorLocation = GLES20.glGetAttribLocation(program,A_COLOR);
         //查询位置位置
         aPositionLocation = GLES20.glGetAttribLocation(program,A_POSITION);
+        //查询矩阵旋转的位置
+        uMatixLocation = GLES20.glGetUniformLocation(program,U_MATRIX);
 
         //## 做一个指针，从vertextData中读取数据给APositionLocation
         //在vertexData的缓冲区中 对应 a_Position的位置
@@ -149,12 +146,29 @@ public class AirHockeyRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceChanged(GL10 glUnused, int width, int height){
         //窗口尺寸
         glViewport(0,0,width,height);
+
+        final float aspectRatio = width > height?
+                (float) width / (float) height :
+                (float) height  / (float) width;
+
+        //orthoM(float[]m,int mOffset,float left,float right,float bottom,float top,float near,float far)
+        //float[]m目标数组，存贮正交投影
+        //mOffset，矩阵开始便宜值
+        if(width > height){
+            android.opengl.Matrix.orthoM(projectionMatrix,0,-aspectRatio,aspectRatio,-1f,1f,-1f,1f);
+        } else {
+            android.opengl.Matrix.orthoM(projectionMatrix,0,-1f,1f,-aspectRatio,aspectRatio,-1f,1f);
+        }
     };
     //每绘制一帧的时候，这个方法被 GLSurfaceView 调用
     @Override
     public void onDrawFrame(GL10 glUnused){
         //擦除屏幕上所有颜色，并用之前的glClearColor()调用定义颜色
         glClear(GLES20.GL_COLOR_BUFFER_BIT);
+
+        //传递正交投影矩阵
+        glUniformMatrix4fv(uMatixLocation,1,false,projectionMatrix,0);
+
         //## 绘制两个三角形
         //第一个参数告诉，我们要画三角形，0代表从第0个位置也就是开头读取顶点，6代表读取六个顶点
         glDrawArrays(GLES20.GL_TRIANGLE_FAN,0,6);
