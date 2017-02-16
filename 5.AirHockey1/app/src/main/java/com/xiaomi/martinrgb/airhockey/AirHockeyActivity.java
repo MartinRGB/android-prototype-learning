@@ -6,6 +6,8 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class AirHockeyActivity extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class AirHockeyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        deleteBars();
         glSurfaceView = new GLSurfaceView(this);
 
         //检测系统是否支持 OpenGL ES 2.0
@@ -54,8 +57,17 @@ public class AirHockeyActivity extends AppCompatActivity {
         }
     }
 
+
 //    两个线程之间的通信可以使用如下方法：在主线程中的GLSurfaceView实例可以调用queueEvent()方法传递一个Runnable给后台渲染线程，
 //    渲染线程就可以调用Activity的runOnUIThread()来传递事件（event）给主线程。
+
+    private void deleteBars(){
+        //Delete Title Bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
+    }
 
 }
 

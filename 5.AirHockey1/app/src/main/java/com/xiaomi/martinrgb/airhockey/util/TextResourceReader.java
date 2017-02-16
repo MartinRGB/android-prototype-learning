@@ -2,7 +2,6 @@ package com.xiaomi.martinrgb.airhockey.util;
 
 import android.content.Context;
 import android.content.res.Resources;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
