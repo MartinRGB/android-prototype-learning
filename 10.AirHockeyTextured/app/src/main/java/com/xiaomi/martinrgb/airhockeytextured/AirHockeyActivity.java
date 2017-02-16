@@ -70,9 +70,8 @@ public class AirHockeyActivity extends AppCompatActivity {
         }
     }
 
-
-//    两个线程之间的通信可以使用如下方法：在主线程中的GLSurfaceView实例可以调用queueEvent()方法传递一个Runnable给后台渲染线程，
-//    渲染线程就可以调用Activity的runOnUIThread()来传递事件（event）给主线程。
+    //两个线程之间的通信可以使用如下方法：在主线程中的GLSurfaceView实例可以调用queueEvent()方法传递一个Runnable给后台渲染线程，
+    //渲染线程就可以调用Activity的runOnUIThread()来传递事件（event）给主线程。
 
     private void deleteBars(){
         //Delete Title Bar
