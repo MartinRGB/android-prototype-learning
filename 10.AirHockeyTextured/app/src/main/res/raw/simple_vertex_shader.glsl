@@ -11,7 +11,8 @@ void main(){
 
     v_Color = a_Color;
 
-    gl_Position = a_Position * u_Matrix;
+    //先后顺序要注意
+    gl_Position = u_Matrix * a_Position;
     //指定点的大小
     gl_PointSize = 10.0;
 }

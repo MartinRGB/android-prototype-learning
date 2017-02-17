@@ -132,4 +132,23 @@ public class ShaderHelper {
 
     };
 
+    //程序构建器
+    public static int buildProgram(String vertexShaderSource,String fragmentShaderSource){
+        int program;
+
+        //编译着色器
+        int vertexShader = complieVertexShader(vertexShaderSource);
+        int fragmentShader = complieFragmentShader(fragmentShaderSource);
+
+        //将着色器连接到程序上
+        program = linkProgram(vertexShader,fragmentShader);
+
+        if(LoggerConfig.ON){
+            validateProgram(program);
+        }
+
+        return program;
+
+    };
+
 }

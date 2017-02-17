@@ -42,16 +42,14 @@ public class AirHockeyActivity extends AppCompatActivity {
 
         setContentView(glSurfaceView);
 
-        glSurfaceView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAirHockeyRender.touchHasDetected = !mAirHockeyRender.touchHasDetected;
-            }
-        });
+//        glSurfaceView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAirHockeyRender.touchHasDetected = !mAirHockeyRender.touchHasDetected;
+//            }
+//        });
 
     }
-
-
 
     //处理生命周期事件，正确暂停并继续后台渲染县城，释放和续用 OpenGL 上下文
     @Override
