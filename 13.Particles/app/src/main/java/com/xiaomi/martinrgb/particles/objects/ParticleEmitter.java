@@ -1,5 +1,6 @@
 package com.xiaomi.martinrgb.particles.objects;
 
+import android.graphics.Color;
 import android.opengl.Matrix;
 
 import com.xiaomi.martinrgb.particles.util.Geometry;
@@ -62,6 +63,11 @@ public class ParticleEmitter {
                     resultVector[1]*speedAdjustment,
                     resultVector[2]*speedAdjustment
             );
+
+            int randomRed = Math.min(255,Math.max(0,random.nextInt()));
+            int randomGreen = Math.min(255,Math.max(0,random.nextInt()));
+            int randomBlue =  Math.min(255,Math.max(0,random.nextInt()));
+            int randomColor = Color.rgb(randomRed, randomGreen, randomBlue);
 
             particleSystem.addParticle(position,color,thisDirection,currentTime);
 
