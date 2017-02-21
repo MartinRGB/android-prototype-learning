@@ -6,6 +6,8 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -99,6 +101,19 @@ public class ParticlesActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            mParticlesRenderer.handleVoiceDown();
+        }
+
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)){
+            mParticlesRenderer.handleVoiceUp();
+        }
+
+        return true;
     }
 
     private void deleteBars(){

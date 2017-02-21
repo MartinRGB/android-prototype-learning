@@ -72,7 +72,7 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
         drawSkybox();
         drawParitcles();
         //打印FPS
-        controllerFPS();
+        //controllerFPS();
     }
 
     private void initParticles(Context context){
@@ -115,7 +115,8 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
         Matrix.setIdentityM(viewMatrix,0);
         //首先旋转y轴，再旋转x轴 - FPS 样式
         Matrix.rotateM(viewMatrix,0,-yRotation,1f,0f,0f);
-        Matrix.rotateM(viewMatrix,0,-xRotation,0f,1f,0f);
+        Matrix.rotateM(viewMatrix,0,-xRotation,0f,1f,mSkyboxZPosition);
+        Matrix.translateM(viewMatrix,0,0f,0f,0);
         Matrix.multiplyMM(viewProjectionMatrix,0,projectionMatrix,0,viewMatrix,0);
         skyboxShaderProgram.useProgram();
         skyboxShaderProgram.setUniforms(viewProjectionMatrix,skyboxTexture);
@@ -136,7 +137,7 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
         //首先旋转y轴，再旋转x轴 - FPS 样式
         Matrix.rotateM(viewMatrix,0,-yRotation,1f,0f,0f);
         Matrix.rotateM(viewMatrix,0,-xRotation,0f,1f,0f);
-        Matrix.translateM(viewMatrix,0,0f,-1.5f,-5f);
+        Matrix.translateM(viewMatrix,0,0f,-1.5f,mParticleZPosition);
         Matrix.multiplyMM(viewProjectionMatrix,0,projectionMatrix,0,viewMatrix,0);
 
         //累加融合技术
@@ -165,6 +166,20 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
         }else if(yRotation > 90){
             yRotation = 90;
         }
+    }
+
+    private float mParticleZPosition = -5f;
+    private float mSkyboxZPosition = 0f;
+
+    public void handleVoiceUp(){
+        mSkyboxZPosition += 0.1f;
+        mParticleZPosition += 0.1f;
+
+    }
+
+    public void handleVoiceDown(){
+        mSkyboxZPosition -= 0.1f;
+        mParticleZPosition -= 0.1f;
     }
 
     //FPS
