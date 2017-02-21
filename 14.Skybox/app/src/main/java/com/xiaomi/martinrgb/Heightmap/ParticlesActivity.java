@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.skybox;
+package com.xiaomi.martinrgb.Heightmap;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.pm.ConfigurationInfo;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -87,7 +86,6 @@ public class ParticlesActivity extends AppCompatActivity {
 
                         //两个线程之间的通信可以使用如下方法：在主线程中的GLSurfaceView实例可以调用queueEvent()方法传递一个Runnable给后台渲染线程，
                         //渲染线程就可以调用Activity的runOnUIThread()来传递事件（event）给主线程。
-
                         glSurfaceView.queueEvent(new Runnable() {
                             @Override
                             public void run() {
