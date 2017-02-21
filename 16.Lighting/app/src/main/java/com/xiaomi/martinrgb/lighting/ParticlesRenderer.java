@@ -37,6 +37,9 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
     private final float[] tempMatrix = new float[16];
     private final float[] viewMatrixForSkybox = new float[16];
 
+    private final float[] modelViewMatrix = new float[16];
+    private final float[] it_modelViewMatrix = new float[16];
+
     //Particle Part
     private ParticleShaderProgram particleProgram;
     private ParticleSystem particleSystem;
@@ -65,7 +68,18 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
     //白天
     //private final Geometry.Vector vectorToLight = new Geometry.Vector(0.61f,0.64f,-0.47f).normalize();
     //夜晚
-    private final Geometry.Vector vectorToLight = new Geometry.Vector(0.30f,0.35f,-0.89f).normalize();
+    //private final Geometry.Vector vectorToLight = new Geometry.Vector(0.30f,0.35f,-0.89f).normalize();
+    final float[] vectorToLight = {0.30f,0.35f,-0.89f,0f};
+    private final float[] pointLightPositions = new float[]
+            {-1f, 1f, 0f, 1f,
+                    0f, 1f, 0f, 1f,
+                    1f, 1f, 0f, 1f};
+
+    private final float[] pointLightColors = new float[]
+            {1.00f, 0.20f, 0.02f,
+                    0.02f, 0.25f, 0.02f,
+                    0.02f, 0.20f, 1.00f};
+
 
     public ParticlesRenderer(Context context) {
         this.context = context;
@@ -166,8 +180,13 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
     }
 
     private void updpateMvpMatrix(){
-        Matrix.multiplyMM(tempMatrix, 0, viewMatrix, 0, modelMatrix, 0);
-        Matrix.multiplyMM(modelViewProjectionMatrix, 0, projectionMatrix, 0, tempMatrix, 0);
+        Matrix.multiplyMM(modelViewMatrix, 0, viewMatrix, 0, modelMatrix, 0);
+        Matrix.invertM(tempMatrix, 0, modelViewMatrix, 0);
+        Matrix.transposeM(it_modelViewMatrix, 0, tempMatrix, 0);
+        Matrix.multiplyMM(
+                modelViewProjectionMatrix, 0,
+                projectionMatrix, 0,
+                modelViewMatrix, 0);
     }
 
     private void updateMvpMatrixForSkybox(){
@@ -235,7 +254,18 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
         Matrix.translateM(viewMatrix,0,0f,0f,mSkyboxZPosition);
         Matrix.multiplyMM(viewProjectionMatrix,0,projectionMatrix,0,viewMatrix,0);
         heightmapShaderProgram.useProgram();
-        heightmapShaderProgram.setUniforms(modelViewProjectionMatrix,vectorToLight);
+
+        final float[] vectorToLightInEyeSpace = new float[4];
+        final float[] pointPositionsInEyeSpace = new float[12];
+        Matrix.multiplyMV(vectorToLightInEyeSpace, 0, viewMatrix, 0, vectorToLight, 0);
+        Matrix.multiplyMV(pointPositionsInEyeSpace, 0, viewMatrix, 0, pointLightPositions, 0);
+        Matrix.multiplyMV(pointPositionsInEyeSpace, 4, viewMatrix, 0, pointLightPositions, 4);
+        Matrix.multiplyMV(pointPositionsInEyeSpace, 8, viewMatrix, 0, pointLightPositions, 8);
+
+        heightmapShaderProgram.setUniforms(modelViewMatrix, it_modelViewMatrix,
+                modelViewProjectionMatrix, vectorToLightInEyeSpace,
+                pointPositionsInEyeSpace, pointLightColors);
+
         heightmap.bindData(heightmapShaderProgram);
         heightmap.draw();
     }
