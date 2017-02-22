@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">18.GeoQuiz</string>
+    <string name="true_button">是的</string>
+    <string name="false_button">不是</string>
+    <string name="question_text">我们生活在 Matrix 世界中吗</string>
+    <string name="correct_toast">没错</string>
+    <string name="incorrect_toast">错啦</string>
+    <string name="text_toast">回答一下</string>
+    <string name="next_button">下一个</string>
+    <string name="prev_button">上一个</string>
+
+    <string name="question_oceans">The Pacific Ocean is larger than
+         the Atlantic Ocean.</string>
+    <string name="question_mideast">The Suez Canal connects the Red Sea
+         and the Indian Ocean.</string>
+    <string name="question_africa">The source of the Nile River is in Egypt.</string>
+    <string name="question_americas">The Amazon River is the longest river in the Americas.</string>
+    <string name="question_asia">Lake Baikal is the world\'s oldest and deepest freshwater lake.</string>
+
+    <string name="warning_text">你确定？</string>
+    <string name="show_answer_button">偷看答案</string>
+    <string name="cheat_button">你作弊了！</string>
+    <string name="judgment_toast">作弊是不对的!</string>
+
+
+</resources>
