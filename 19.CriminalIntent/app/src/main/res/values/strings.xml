@@ -5,4 +5,10 @@
     <string name="crime_details_label">细节</string>
     <string name="crime_solve_label">待解决</string>
     <string name="crime_solved_label">已解决</string>
+    <string name="date_picker_title">犯罪日期</string>
+
+    <string name="new_crime">新罪行</string>
+    <string name="show_subtitle">展示副标题</string>
+    <string name="hide_subtitle">隐藏副标题</string>
+    <string name="subtitle_format">%1$s 丑态</string>
 </resources>

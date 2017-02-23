@@ -28,12 +28,12 @@ public class CrimeLab {
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
         //含量为100的crimeList;
-        for(int i =0;i<100;i++){
-            Crime crime = new Crime();
-            crime.setTitle("丑态记录" + i);
-            crime.setSolved(i%2 == 0);//每隔一个设置
-            mCrimes.add(crime);
-        }
+//        for(int i =0;i<100;i++){
+//            Crime crime = new Crime();
+//            crime.setTitle("丑态记录" + i);
+//            crime.setSolved(i%2 == 0);//每隔一个设置
+//            mCrimes.add(crime);
+//        }
     }
 
     //取Crime List列表
@@ -50,5 +50,9 @@ public class CrimeLab {
             }
         }
         return null;
+    }
+
+    public void addCrime(Crime c){
+        mCrimes.add(c);
     }
 }

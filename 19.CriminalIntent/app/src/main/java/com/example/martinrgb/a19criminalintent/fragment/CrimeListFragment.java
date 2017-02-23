@@ -6,10 +6,14 @@ import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.martinrgb.a19criminalintent.CrimeActivity;
+import com.example.martinrgb.a19criminalintent.CrimePagerActivity;
 import com.example.martinrgb.a19criminalintent.R;
 import com.example.martinrgb.a19criminalintent.model.Crime;
 import com.example.martinrgb.a19criminalintent.model.CrimeLab;
@@ -40,15 +45,93 @@ public class CrimeListFragment extends Fragment {
     private static final int REQUEST_CRIME = 1;
     private static final String TAG ="CrimeListFragment";
 
+    private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         View view = inflater.inflate(R.layout.fragment_crime_list, container, false);
         ButterKnife.bind(this, view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //创建的时候，Boolean值从Instance取 (创建时)
+        if (savedInstance != null) {
+            mSubtitleVisible = savedInstance.getBoolean(SAVED_SUBTITLE_VISIBLE);
+        }
+
         updateUI();
         return view;
     }
 
+
+    //保存Instance的时候，顺手放进一个Boolean值
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(SAVED_SUBTITLE_VISIBLE, mSubtitleVisible);
+    }
+
+    //覆盖了菜单的方法，实现XML中自定义创建
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime_list, menu);
+
+        //切换 Tittle Text;
+        MenuItem subtitleItem = menu.findItem(R.id.menu_item_show_subtitle);
+        if (mSubtitleVisible) {
+            subtitleItem.setTitle(R.string.hide_subtitle);
+        } else {
+            subtitleItem.setTitle(R.string.show_subtitle);
+        }
+    }
+
+    //顶部项目的点击
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_crime:
+                //点击之后，新建一个crime Model
+                Crime crime = new Crime();
+                //加入 Model 管理池
+                CrimeLab.get(getActivity()).addCrime(crime);
+                //转场，获取 Model ID
+                Intent intent = CrimePagerActivity
+                        .newIntent(getActivity(), crime.getID());
+                startActivity(intent);
+                return true;
+            case R.id.menu_item_show_subtitle:
+                mSubtitleVisible = !mSubtitleVisible;
+                getActivity().invalidateOptionsMenu();
+                updateSubtitle();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private boolean mSubtitleVisible;
+
+    private void updateSubtitle() {
+        CrimeLab crimeLab = CrimeLab.get(getActivity());
+        int crimeCount = crimeLab.getCrimes().size();
+        String subtitle = getString(R.string.subtitle_format, crimeCount);
+        if (!mSubtitleVisible) {
+            subtitle = null;
+        }
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.getSupportActionBar().setSubtitle(subtitle);
+    }
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //覆盖后的菜单方法，要告知FragmentManger，要使用
+        setHasOptionsMenu(true);
+    }
+
+    //#### 刷新
     @Override
     public void onResume() {
         super.onResume();
@@ -73,6 +156,8 @@ public class CrimeListFragment extends Fragment {
                 Log.e(TAG,"Notified");
             }
         }
+
+        updateSubtitle();
 
     }
 
@@ -128,7 +213,7 @@ public class CrimeListFragment extends Fragment {
         public void onClick(View v){
             //Toast.makeText(getActivity(),mCrime.getTitle() + " clicked",Toast.LENGTH_SHORT).show();
             //告知CrimeActivity它的Id
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getID());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getID());
             //startActivity(intent);
             startActivityForResult(intent, REQUEST_CRIME);
 
