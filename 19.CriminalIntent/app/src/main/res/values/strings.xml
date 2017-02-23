@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">丑态收集器</string>
+    <string name="crime_title_hint">输入丑态的标题.</string>
+    <string name="crime_title_label">标题</string>
+    <string name="crime_details_label">细节</string>
+    <string name="crime_solve_label">待解决</string>
+    <string name="crime_solved_label">已解决</string>
+</resources>
