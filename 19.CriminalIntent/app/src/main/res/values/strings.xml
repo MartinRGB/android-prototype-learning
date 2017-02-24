@@ -11,4 +11,17 @@
     <string name="show_subtitle">展示副标题</string>
     <string name="hide_subtitle">隐藏副标题</string>
     <string name="subtitle_format">%1$s 丑态</string>
+
+    <string name="crime_suspect_text">选择联系人</string>
+    <string name="crime_report_text">发送丑态记录</string>
+
+    <string name="crime_report">%1$s
+         罪行发生于 %2$s. %3$s, 并且 %4$s
+       </string>
+    <string name="crime_report_solved">事情解决了</string>
+    <string name="crime_report_unsolved">事情没解决</string>
+    <string name="crime_report_no_suspect">没有罪犯</string>
+    <string name="crime_report_suspect">罪犯是 %s.</string>
+    <string name="crime_report_subject">丑态收集器之丑态报告</string>
+    <string name="send_report">发送通过</string>
 </resources>

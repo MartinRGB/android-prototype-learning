@@ -13,11 +13,17 @@ public class Crime {
     private UUID mID;
     private Date mDate;
     private boolean mSolved;
+    private String mSuspect;
 
     //Constructor
-    public Crime(){
+
+    public Crime() {
+        this(UUID.randomUUID());
+    }
+
+    public Crime(UUID id){
         //使用随机ID
-        mID = UUID.randomUUID();
+        mID = id;
         //使用当前日期
         mDate = new Date();
     }
@@ -49,6 +55,15 @@ public class Crime {
 
     public boolean isSolved() {
         return mSolved;
+    }
+
+
+    public String getSuspect() {
+        return mSuspect;
+    }
+
+    public void setSuspect(String suspect) {
+        mSuspect = suspect;
     }
 
 }

@@ -29,6 +29,7 @@ import com.example.martinrgb.a19criminalintent.model.CrimeLab;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -138,6 +139,7 @@ public class CrimeListFragment extends Fragment {
         updateUI();
     }
 
+
     //#### 刷新
     private void updateUI() {
         //拿取模型库
@@ -152,9 +154,13 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
             if(worthToNotify){
-                mAdapter.notifyItemChanged(clickedViewHolderPosition);
+                mAdapter.setCrimes(crimes);
+                mAdapter.notifyDataSetChanged();
+                //mAdapter.notifyItemChanged(clickedViewHolderPosition);
                 Log.e(TAG,"Notified");
             }
+
+
         }
 
         updateSubtitle();
@@ -163,6 +169,7 @@ public class CrimeListFragment extends Fragment {
 
     private int clickedViewHolderPosition;
     private boolean worthToNotify;
+    private UUID mClickedCrimeID;
 
     //创建TextView风格的ViewHolder
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -204,6 +211,10 @@ public class CrimeListFragment extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     mCrime.setSolved(isChecked);
+
+                    //更新CrimeLab数据库
+                    CrimeLab.get(getActivity()).updateCrime(mCrime);
+                    worthToNotify = true;
                 }
             });
         }
@@ -272,6 +283,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes) {
+            mCrimes = crimes;
         }
     }
 
