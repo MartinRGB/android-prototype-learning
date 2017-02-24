@@ -66,4 +66,7 @@ public class Crime {
         mSuspect = suspect;
     }
 
+    //添加文件名获取方法
+    public String getPhotoFilename() {return "IMG_" + getID().toString() + ".jpg";}
+
 }

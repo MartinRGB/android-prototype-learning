@@ -14,6 +14,7 @@
 
     <string name="crime_suspect_text">选择联系人</string>
     <string name="crime_report_text">发送丑态记录</string>
+    <string name="crime_report_image">发送丑态照片</string>
 
     <string name="crime_report">%1$s
          罪行发生于 %2$s. %3$s, 并且 %4$s

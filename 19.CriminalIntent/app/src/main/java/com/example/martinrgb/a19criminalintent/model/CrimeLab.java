@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
 import com.example.martinrgb.a19criminalintent.database.CrimeBaseHelper;
 import com.example.martinrgb.a19criminalintent.database.CrimeCursorWrapper;
 import com.example.martinrgb.a19criminalintent.database.CrimeDbSchema;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -119,6 +121,17 @@ public class CrimeLab {
         }
     }
 
+    //定位图片文件
+    public File getPhotoFile(Crime crime) {
+        File externalFilesDir = mContext
+                .getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        if (externalFilesDir == null) {
+            return null;
+        }
+        //返回指向某个具体位置的文件对象
+        return new File(externalFilesDir, crime.getPhotoFilename());
+    }
+
     public void updateCrime(Crime crime){
         String uuidString = crime.getID().toString();
         //拿到更新Crime Model的所有的所需数据类型
@@ -136,4 +149,5 @@ public class CrimeLab {
         //数据库表名/null/写入的数据
         mDatabase.insert(CrimeDbSchema.CrimeTable.NAME, null, values);
     }
+
 }

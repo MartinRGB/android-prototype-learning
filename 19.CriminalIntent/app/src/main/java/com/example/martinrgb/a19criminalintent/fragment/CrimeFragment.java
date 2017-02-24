@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -20,18 +22,21 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.example.martinrgb.a19criminalintent.PictureUtils;
 import com.example.martinrgb.a19criminalintent.R;
 import com.example.martinrgb.a19criminalintent.model.Crime;
 import com.example.martinrgb.a19criminalintent.model.CrimeLab;
 
+import java.io.File;
 import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by MartinRGB on 2017/2/23.
@@ -48,7 +53,14 @@ public class CrimeFragment extends Fragment {
     Button mSuspectButton;
     @BindView(R.id.crime_report)
     Button mReportButton;
+    @BindView(R.id.crime_photo)
+    ImageView mPhotoView;
+    @BindView(R.id.crime_camera)
+    ImageButton mPhotoButton;
+    @BindView(R.id.crime_image)
+    Button mImageButton;
     private Crime mCrime;
+    private File mPhotoFile;
 
     //Argument传数据法
     //######### 实例化直接在本体完成
@@ -56,6 +68,7 @@ public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_CONTACT = 1;
+    private static final int REQUEST_PHOTO = 2;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         //实例化同时接受Bundle
@@ -77,6 +90,7 @@ public class CrimeFragment extends Fragment {
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         //让对应的Crime获取正确的ID
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+        mPhotoFile = CrimeLab.get(getActivity()).getPhotoFile(mCrime);
     }
 
     @Override
@@ -87,6 +101,7 @@ public class CrimeFragment extends Fragment {
     }
 
     private boolean initChecked;
+    private Uri imageUri;
 
     //Fragment 本身的 创建
     @Override
@@ -97,23 +112,24 @@ public class CrimeFragment extends Fragment {
         mSolvedCheckBoxListener();
         mDateButtonListener();
         mReportBtnClickListener();
+        mImageBtnClickListener();
 
+        //联系人
         final Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         //pickContact.addCategory(Intent.CATEGORY_HOME);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivityForResult(pickContact,REQUEST_CONTACT);
+                startActivityForResult(pickContact, REQUEST_CONTACT);
 
             }
 
         });
 
-        if(mCrime.getSuspect() != null){
+        if (mCrime.getSuspect() != null) {
             mSuspectButton.setText(mCrime.getSuspect());
         }
-
 
         //检查是否存在联系人应用
         PackageManager packageManager = getActivity().getPackageManager();
@@ -122,6 +138,29 @@ public class CrimeFragment extends Fragment {
             mSuspectButton.setEnabled(false);
         }
 
+
+        //拍照
+        final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        boolean canTakePhoto = mPhotoFile != null &&
+                captureImage.resolveActivity(packageManager) != null;
+        mPhotoButton.setEnabled(canTakePhoto);
+
+        //如果能拍照
+        if (canTakePhoto) {
+            //传入EXTRA_OUTPUT一个指定存储路径
+            Uri uri = Uri.fromFile(mPhotoFile);
+            imageUri = uri;
+            captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        }
+        //隐式intent转场
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(captureImage, REQUEST_PHOTO);
+            }
+        });
+
+        updatePhotoView();
 
 
         mTitleField.setText(mCrime.getTitle());
@@ -162,7 +201,7 @@ public class CrimeFragment extends Fragment {
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
             updateDate();
-        } else if(requestCode == REQUEST_CONTACT && data !=null){
+        } else if (requestCode == REQUEST_CONTACT && data != null) {
             Uri contactUri = data.getData();
 
             //创建查询语句，返回全部联系人名字，
@@ -178,7 +217,8 @@ public class CrimeFragment extends Fragment {
             try {
                 // Double-check that you actually got results
                 if (c.getCount() == 0) {
-                    return; }
+                    return;
+                }
                 // Pull out the first column of the first row of data -
                 // that is your suspect's name.
                 c.moveToFirst();
@@ -188,6 +228,8 @@ public class CrimeFragment extends Fragment {
             } finally {
                 c.close();
             }
+        } else if (requestCode == REQUEST_PHOTO) {
+            updatePhotoView();
         }
     }
 
@@ -238,15 +280,49 @@ public class CrimeFragment extends Fragment {
         });
     }
 
-    private void mReportBtnClickListener(){
+    private void mReportBtnClickListener() {
         mReportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //隐式Intent
                 Intent i = new Intent(Intent.ACTION_SEND);
+                //i.setType("text/plain");
+
+
+                //标题
+                i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.crime_report_subject));
+                //文本
+                i.putExtra(Intent.EXTRA_TEXT, getCrimeReport());
+
+                //发送文本
                 i.setType("text/plain");
-                i.putExtra(Intent.EXTRA_TEXT,getCrimeReport());
-                i.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.crime_report_subject));
+                //发送图片
+                //i.setType("image/jpg");
+                //添加图片的发送
+                //i.putExtra(Intent.EXTRA_STREAM, imageUri);
+
+                i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                i = Intent.createChooser(i, getString(R.string.send_report));
+                startActivity(i);
+            }
+        });
+    }
+
+    private void mImageBtnClickListener() {
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //隐式Intent
+                Intent i = new Intent(Intent.ACTION_SEND);
+                //i.setType("text/plain");
+
+
+                //发送图片
+                i.setType("image/jpg");
+                //添加图片的发送
+                i.putExtra(Intent.EXTRA_STREAM, imageUri);
+
+                i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 i = Intent.createChooser(i, getString(R.string.send_report));
                 startActivity(i);
             }
@@ -271,6 +347,15 @@ public class CrimeFragment extends Fragment {
         String report = getString(R.string.crime_report,
                 mCrime.getTitle(), dateString, solvedString, suspect);
         return report;
+    }
+
+    private void updatePhotoView() {
+        if (mPhotoView == null || !mPhotoFile.exists()) {
+            mPhotoView.setImageDrawable(null);
+        } else {
+            Bitmap bm = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            mPhotoView.setImageBitmap(bm);
+        }
     }
 
 }
