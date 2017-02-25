@@ -1,5 +1,7 @@
 package com.example.martinrgb.a22photogallery;
 
+import android.net.Uri;
+
 /**
  * Created by MartinRGB on 2017/2/24.
  */
@@ -9,6 +11,7 @@ public class GalleryItem {
     private String mTitle;
     private String mId;
     private String mUrl;
+    private String mOwner;
 
     public void setmUrl(String mUrl) {
         this.mUrl = mUrl;
@@ -32,6 +35,22 @@ public class GalleryItem {
 
     public String getmTitle() {
         return mTitle;
+    }
+
+    public String getmOwner() {
+        return mOwner;
+    }
+
+    public void setmOwner(String mOwner) {
+        this.mOwner = mOwner;
+    }
+
+    public Uri getPhotoPageUri() {
+        return Uri.parse("http://www.flickr.com/photos/")
+                .buildUpon()
+                .appendPath(mOwner)
+                .appendPath(mId)
+                .build();
     }
 
 

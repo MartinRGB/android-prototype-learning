@@ -1,5 +1,6 @@
 package com.example.martinrgb.a22photogallery;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,8 +10,12 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,7 +42,9 @@ public class PhotoGalleryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        new FetchItemsTask().execute();
+        setHasOptionsMenu(true);
+        //new FetchItemsTask().execute();
+        updateItems();
 
         //下载器
 
@@ -50,7 +57,6 @@ public class PhotoGalleryFragment extends Fragment {
                 public void onThumbnailDownloaded(PhotoHolder photoHolder, Bitmap bitmap) {
                     Drawable drawable = new BitmapDrawable(getResources(), bitmap);
                     photoHolder.bindDrawable(drawable);
-                    Log.e("abcd","abcd");
                 }
             }
         );
@@ -58,6 +64,61 @@ public class PhotoGalleryFragment extends Fragment {
         mThumbnailDownloader.start();
         mThumbnailDownloader.getLooper();
         Log.i(TAG, "Background thread started");
+    }
+
+    //点击搜索输入框
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        super.onCreateOptionsMenu(menu, menuInflater);
+        menuInflater.inflate(R.menu.fragment_photo_gallery, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.menu_item_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+           //提交搜索查询
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Log.d(TAG, "QueryTextSubmit: " + s);
+                QueryPreferences.setStoredQuery(getActivity(),s);
+                updateItems();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                Log.d(TAG, "QueryTextChange: " + s);
+                return false;
+            }
+
+        });
+
+        //SearchView保存查询过的信息
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = QueryPreferences.getStoredQuery(getActivity());
+                searchView.setQuery(query, false);
+            }
+        });
+    }
+
+    //点击清除狂
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_clear:
+                QueryPreferences.setStoredQuery(getActivity(), null);
+                updateItems();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        } }
+
+    //告诉后台，更新一下
+    private void updateItems() {
+        String query = QueryPreferences.getStoredQuery(getActivity());
+        new FetchItemsTask(query).execute();
     }
 
     @Override
@@ -84,21 +145,32 @@ public class PhotoGalleryFragment extends Fragment {
         return v;
     }
 
-    private class PhotoHolder extends RecyclerView.ViewHolder{
+    private class PhotoHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView mItemImageView;
+        private GalleryItem mGalleryItem;
         public PhotoHolder(View itemView){
             super(itemView);
             mItemImageView = (ImageView) itemView.findViewById(R.id.fragment_photo_gallery_image_view);
-            Drawable placeholder = getResources().getDrawable(R.drawable.placeholder);
-            mItemImageView.setImageDrawable(placeholder);
+            itemView.setOnClickListener(this);
         }
 
         public void bindDrawable(Drawable drawable){
             mItemImageView.setImageDrawable(drawable);
         }
-        public void bindBitmap(Bitmap bitmap){
-            mItemImageView.setImageBitmap(bitmap);
+
+        public void bindGalleryItem(GalleryItem galleryItem){
+            mGalleryItem = galleryItem;
         }
+
+        @Override
+        public void onClick(View v){
+            //Intent i = new Intent(Intent.ACTION_VIEW,mGalleryItem.getPhotoPageUri());
+            Intent i = WebVieActivity
+                    .newIntent(getActivity(), mGalleryItem.getPhotoPageUri());
+            startActivity(i);
+        }
+
+
 
     }
 
@@ -118,6 +190,9 @@ public class PhotoGalleryFragment extends Fragment {
         @Override
         public void onBindViewHolder(PhotoHolder photoHolder,int position){
             GalleryItem galleryItem = mGalleryItems.get(position);
+            photoHolder.bindGalleryItem(galleryItem);
+            Drawable placeholder = getResources().getDrawable(R.drawable.placeholder);
+            photoHolder.bindDrawable(placeholder);
             mThumbnailDownloader.queueThumbnail(photoHolder, galleryItem.getmUrl());
 
 
@@ -138,15 +213,19 @@ public class PhotoGalleryFragment extends Fragment {
 
     //要在后台抓取 Url
     private class FetchItemsTask extends AsyncTask<Void,Void,List<GalleryItem>> {
+        private String mQuery;
+
+        public FetchItemsTask(String query){
+            mQuery = query;
+        }
+
         @Override
         protected List<GalleryItem> doInBackground(Void... params){
-//            try{
-//                String result = new WebFetchr().getUrlString(API_KEY);
-//                Log.i(TAG, "Fetched contents of URL: " + result);
-//            } catch (IOException ioe){
-//                Log.e(TAG,"Failed to fetch URL: " + ioe);
-//            }
-            return new WebFetchr().fetchItems();
+            if (mQuery == null) {
+                return new WebFetchr().fetchRecentPhotos();
+            } else {
+                return new WebFetchr().searchPhotos(mQuery);
+            }
         }
 
         @Override

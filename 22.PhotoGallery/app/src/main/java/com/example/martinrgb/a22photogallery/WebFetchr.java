@@ -23,7 +23,18 @@ public class WebFetchr {
 
     private static final String TAG = "WebFetchr";
     private static final String API_KEY = "4a55029b4fb615937fa858b3ca9b1cee";
-    //private static final String BASE_URL = "https://api.unsplash.com";
+
+    //搜索功能
+    private static final String FETCH_RECENTS_METHOD = "flickr.photos.getRecent";
+    private static final String SEARCH_METHOD = "flickr.photos.search";
+    private static final Uri ENDPOINT = Uri
+            .parse("https://api.flickr.com/services/rest/")
+            .buildUpon()
+            .appendQueryParameter("api_key", API_KEY)
+            .appendQueryParameter("format", "json")
+            .appendQueryParameter("nojsoncallback", "1")
+            .appendQueryParameter("extras", "url_s")
+            .build();
 
     //从指定URL获取原始数据，返回字节流数组
     public byte[] getUrlBytes(String urlSpec) throws IOException{
@@ -31,6 +42,7 @@ public class WebFetchr {
         URL url = new URL(urlSpec);
         //创建链接对象
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
 
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -62,17 +74,17 @@ public class WebFetchr {
     }
 
 
-    public List<GalleryItem> fetchItems() {
+    public List<GalleryItem> downloadGalleryItems(String url) {
         List<GalleryItem> items = new ArrayList<>();
         try {
-            String url = Uri.parse("https://api.flickr.com/services/rest/")
-                    .buildUpon()
-                    .appendQueryParameter("method", "flickr.photos.getRecent")
-                    .appendQueryParameter("api_key", API_KEY)
-                    .appendQueryParameter("format", "json")
-                    .appendQueryParameter("nojsoncallback", "1")
-                    .appendQueryParameter("extras", "url_s")
-                    .build().toString();
+//            String url = Uri.parse("https://api.flickr.com/services/rest/")
+//                    .buildUpon()
+//                    .appendQueryParameter("method", "flickr.photos.getRecent")
+//                    .appendQueryParameter("api_key", API_KEY)
+//                    .appendQueryParameter("format", "json")
+//                    .appendQueryParameter("nojsoncallback", "1")
+//                    .appendQueryParameter("extras", "url_s")
+//                    .build().toString();
             String jsonString = getUrlString(url);
             Log.i(TAG, "Received JSON: " + jsonString);
             JSONObject jsonBody = new JSONObject(jsonString);
@@ -97,6 +109,7 @@ public class WebFetchr {
             GalleryItem item = new GalleryItem();
             item.setmId(photoJsonObject.getString("id"));
             item.setmTitle(photoJsonObject.getString("title"));
+            item.setmOwner(photoJsonObject.getString("owner"));
             if (!photoJsonObject.has("url_s")) {
                 continue;
             }
@@ -104,4 +117,27 @@ public class WebFetchr {
             items.add(item);
         }
     }
+
+    //Url Build法(带Search)
+    private String buildUrl(String method, String query) {
+        Uri.Builder uriBuilder = ENDPOINT.buildUpon()
+                .appendQueryParameter("method", method);
+        if (method.equals(SEARCH_METHOD)) {
+            uriBuilder.appendQueryParameter("text", query);
+        }
+        return uriBuilder.build().toString();
+    }
+
+    //下载最近内容
+    public List<GalleryItem> fetchRecentPhotos() {
+        String url = buildUrl(FETCH_RECENTS_METHOD, null);
+        return downloadGalleryItems(url);
+    }
+
+    //下载搜索内容
+    public List<GalleryItem> searchPhotos(String query) {
+        String url = buildUrl(SEARCH_METHOD, query);
+        return downloadGalleryItems(url);
+    }
+
 }
