@@ -3,6 +3,7 @@ package com.example.martinrgb.a22photogallery;
 import android.net.Uri;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +22,8 @@ import java.util.List;
 public class WebFetchr {
 
     private static final String TAG = "WebFetchr";
-    private static final String APP_ID = "4e54787c9f3bf477d7ffef4869e130795667c754096d4fc65d3fd39a76ce42f1";
+    private static final String API_KEY = "4a55029b4fb615937fa858b3ca9b1cee";
     //private static final String BASE_URL = "https://api.unsplash.com";
-    private static final String BASE_URL = "https://unsplash.it/list";
 
     //从指定URL获取原始数据，返回字节流数组
     public byte[] getUrlBytes(String urlSpec) throws IOException{
@@ -60,25 +61,47 @@ public class WebFetchr {
         return new String(getUrlBytes(urlSpec));
     }
 
-    public void fetchItems() {
+
+    public List<GalleryItem> fetchItems() {
+        List<GalleryItem> items = new ArrayList<>();
         try {
-            String url = Uri.parse(BASE_URL)
+            String url = Uri.parse("https://api.flickr.com/services/rest/")
                     .buildUpon()
+                    .appendQueryParameter("method", "flickr.photos.getRecent")
+                    .appendQueryParameter("api_key", API_KEY)
                     .appendQueryParameter("format", "json")
                     .appendQueryParameter("nojsoncallback", "1")
+                    .appendQueryParameter("extras", "url_s")
                     .build().toString();
             String jsonString = getUrlString(url);
             Log.i(TAG, "Received JSON: " + jsonString);
-            //解析Json数据
             JSONObject jsonBody = new JSONObject(jsonString);
+            //解析Json数据
+            parseItems(items,jsonBody);
         }catch (JSONException je){
             Log.e(TAG, "Failed to parse JSON", je);
         } catch (IOException ioe) {
             Log.e(TAG, "Failed to fetch items", ioe);
         }
+
+        return items;
     }
 
-    private void parseItems(List<GalleryItem> items, JSONObject jsonObject) throws IOException,JSONException {
-        JSONObject photosJsonObject = jsonObject.getJSONObject("");
+    private void parseItems(List<GalleryItem> items, JSONObject jsonBody) throws IOException,JSONException {
+        //不用写了，因为已经是个Array
+        JSONObject photosJsonObject = jsonBody.getJSONObject("photos");
+        JSONArray photoJsonArray = photosJsonObject.getJSONArray("photo");
+
+        for (int i = 0; i < photoJsonArray.length(); i++) {
+            JSONObject photoJsonObject = photoJsonArray.getJSONObject(i);
+            GalleryItem item = new GalleryItem();
+            item.setmId(photoJsonObject.getString("id"));
+            item.setmTitle(photoJsonObject.getString("title"));
+            if (!photoJsonObject.has("url_s")) {
+                continue;
+            }
+            item.setmUrl(photoJsonObject.getString("url_s"));
+            items.add(item);
+        }
     }
 }
