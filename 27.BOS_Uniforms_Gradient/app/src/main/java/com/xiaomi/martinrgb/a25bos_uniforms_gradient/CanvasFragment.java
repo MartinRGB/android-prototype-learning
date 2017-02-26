@@ -39,8 +39,6 @@ public class CanvasFragment extends Fragment {
         setFPSView(view);
         setGLTouchListener();
 
-
-
         return view;
     }
 
@@ -53,6 +51,7 @@ public class CanvasFragment extends Fragment {
             }
         });
     }
+    //Life Cycle
     @Override
     public void onCreate(Bundle savedInstancestate){
         super.onCreate(savedInstancestate);
@@ -72,6 +71,7 @@ public class CanvasFragment extends Fragment {
         }
     }
 
+    //Init Canvas
     private void initCanvasSurfaceView(Context context,View parent){
         canvasGLSurfaceView = (CanvasGLSurfaceView) parent.findViewById(R.id.mCanvasGLSurfaceView);
 
@@ -92,7 +92,6 @@ public class CanvasFragment extends Fragment {
             return;
         }
     }
-
     private void setGLTouchListener(){
         canvasGLSurfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -123,7 +122,6 @@ public class CanvasFragment extends Fragment {
             }
         });
     }
-
     private void setFPSView(View parent){
         mFPSView = (TextView) parent.findViewById(R.id.textView);
         mCanvasRenderer.setOnDrawFrameListener(new CanvasRenderer.onDrawFrameListener() {

@@ -10,6 +10,6 @@ void main() {
     vec2 pointerst = gl_FragCoord.xy/u_Mouse;
     float blue = pointerst.x * pointerst.y;
 	vec2 st = gl_FragCoord.xy/u_Resolution;
-    gl_FragColor = vec4(st.x,abs(sin(u_Time)),blue,1.0);
+    gl_FragColor = vec4(st.x,st.y,blue,1.0);
 }
 

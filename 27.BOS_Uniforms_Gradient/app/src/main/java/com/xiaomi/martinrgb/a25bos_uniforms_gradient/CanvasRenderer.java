@@ -29,7 +29,6 @@ public class CanvasRenderer  implements GLSurfaceView.Renderer{
     @Override
     public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig){
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
         simpleColor = new SimpleColor();
         simpleShaderProgram = new SimpleShaderProgram(context);
     }
@@ -43,10 +42,9 @@ public class CanvasRenderer  implements GLSurfaceView.Renderer{
 
         initTimeValue += incrementPerFrame;
         simpleShaderProgram.useProgram();
-        simpleShaderProgram.setUniforms(initTimeValue,864.0f,1536.0f,touchX*1080,1920 - touchY*1920);
+        simpleShaderProgram.setUniforms(initTimeValue,1080.0f,1920.0f,touchX*1080.0f,1920.0f - touchY*1920);
         simpleColor.bindData(simpleShaderProgram);
         simpleColor.draw();
-
         controllerFPS();
 
     }
@@ -59,21 +57,22 @@ public class CanvasRenderer  implements GLSurfaceView.Renderer{
         return Math.min(max,Math.max(value,min));
     }
 
-
+    //Gesture
     private boolean hasPressed = false;
     private boolean hasDragged = false;
     private float touchX;
     private float touchY;
     private float prevTouchX;
     private float prevTouchY;
-
     public void handleTouchPress(float normalizedX, float normalizedY){
         hasPressed = !hasPressed;
+        prevTouchX = touchX;
+        prevTouchY = touchY;
         touchX = normalizedX;
         touchY = normalizedY;
-        Log.e("TAG","Touch了");
+        Log.e("TAG",String.valueOf(prevTouchX));
+        Log.e("TAG",String.valueOf(touchX));
     }
-
     public void handleTouchDrag(float normalizedX, float normalizedY){
         hasDragged = !hasDragged;
         prevTouchX = touchX;
@@ -81,13 +80,9 @@ public class CanvasRenderer  implements GLSurfaceView.Renderer{
         touchX = normalizedX;
         touchY = normalizedY;
 
-        Log.e("TAG",String.valueOf(touchX));
-        Log.e("TAG","Drag了");
-
-
     }
 
-    //FPS
+    //FPS Listener
     public interface onDrawFrameListener {
         public void getDrawFramePerSecond(int fps);
     }

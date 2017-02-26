@@ -19,11 +19,11 @@ public class SimpleColor {
             //Order of coordinates: X, Y
             // Triangle Fan
             0f, 0f,
-            -0.8f, -0.8f,
-            0.8f, -0.8f,
-            0.8f, 0.8f,
-            -0.8f, 0.8f,
-            -0.8f, -0.8f
+            -1.0f, -1.0f,
+            1.0f, -1.0f,
+            1.0f, 1.0f,
+            -1.0f, 1.0f,
+            -1.0f, -1.0f
     };
 
     public SimpleColor() {
