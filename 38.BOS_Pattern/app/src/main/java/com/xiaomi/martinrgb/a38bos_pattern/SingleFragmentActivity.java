@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.a36bos_translate;
+package com.xiaomi.martinrgb.a38bos_pattern;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

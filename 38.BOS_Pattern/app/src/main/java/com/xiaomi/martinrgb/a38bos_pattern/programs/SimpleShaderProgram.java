@@ -1,9 +1,9 @@
-package com.xiaomi.martinrgb.a36bos_translate.programs;
+package com.xiaomi.martinrgb.a38bos_pattern.programs;
 
 import android.content.Context;
 import android.opengl.GLES20;
 
-import com.xiaomi.martinrgb.a36bos_translate.R;
+import com.xiaomi.martinrgb.a38bos_pattern.R;
 
 /**
  * Created by MartinRGB on 2017/2/26.

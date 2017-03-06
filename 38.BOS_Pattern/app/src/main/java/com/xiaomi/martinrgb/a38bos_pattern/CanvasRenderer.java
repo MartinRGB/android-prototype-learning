@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.a36bos_translate;
+package com.xiaomi.martinrgb.a38bos_pattern;
 
 import android.content.Context;
 import android.opengl.GLES20;
@@ -7,8 +7,8 @@ import android.util.Log;
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
-import com.xiaomi.martinrgb.a36bos_translate.objects.SimpleColor;
-import com.xiaomi.martinrgb.a36bos_translate.programs.SimpleShaderProgram;
+import com.xiaomi.martinrgb.a38bos_pattern.objects.SimpleColor;
+import com.xiaomi.martinrgb.a38bos_pattern.programs.SimpleShaderProgram;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;

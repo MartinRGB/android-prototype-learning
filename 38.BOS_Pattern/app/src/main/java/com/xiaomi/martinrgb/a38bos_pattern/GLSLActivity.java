@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.a36bos_translate;
+package com.xiaomi.martinrgb.a38bos_pattern;
 
 public class GLSLActivity extends SingleFragmentActivity {
     //Override

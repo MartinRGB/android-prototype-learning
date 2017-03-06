@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.a36bos_translate.util;
+package com.xiaomi.martinrgb.a38bos_pattern.util;
 
 /**
  * Created by MartinRGB on 2017/2/26.

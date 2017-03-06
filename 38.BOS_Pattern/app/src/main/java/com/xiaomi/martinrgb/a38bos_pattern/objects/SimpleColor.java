@@ -1,10 +1,10 @@
-package com.xiaomi.martinrgb.a36bos_translate.objects;
+package com.xiaomi.martinrgb.a38bos_pattern.objects;
 
 import android.opengl.GLES20;
 
-import com.xiaomi.martinrgb.a36bos_translate.programs.SimpleShaderProgram;
-import com.xiaomi.martinrgb.a36bos_translate.util.Constants;
-import com.xiaomi.martinrgb.a36bos_translate.util.VertexArray;
+import com.xiaomi.martinrgb.a38bos_pattern.programs.SimpleShaderProgram;
+import com.xiaomi.martinrgb.a38bos_pattern.util.Constants;
+import com.xiaomi.martinrgb.a38bos_pattern.util.VertexArray;
 
 /**
  * Created by MartinRGB on 2017/2/26.

@@ -1,4 +1,4 @@
-package com.xiaomi.martinrgb.a36bos_translate;
+package com.xiaomi.martinrgb.a38bos_pattern;
 
 import android.app.ActivityManager;
 import android.content.Context;
