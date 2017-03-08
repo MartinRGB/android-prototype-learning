@@ -1,0 +1,21 @@
+#Internal package file, do not edit.
+#Wed Mar 08 15:06:32 CST 2017
+2.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+5.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/icon.png
+5.set=ANDROID_RESOURCE
+3.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+2.set=ANDROID_RESOURCE
+4.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+count=6
+0.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/res/layout/main.xml
+5.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+4.set=ANDROID_RESOURCE
+1.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/resources.arsc
+1.set=ANDROID_RESOURCE
+2.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/AndroidManifest.xml
+0.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+3.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/res/layout/configure_dialog.xml
+3.set=ANDROID_RESOURCE
+1.base=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_
+4.file=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/resources-debug.ap_/res/menu/menu.xml
+0.set=ANDROID_RESOURCE

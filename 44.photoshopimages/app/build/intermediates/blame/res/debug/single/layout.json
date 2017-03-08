@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/merged/debug/layout/main.xml",
+        "source": "/Users/MartinRGB/Desktop/photoshopimages/app/src/main/res/layout/main.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/res/merged/debug/layout/configure_dialog.xml",
+        "source": "/Users/MartinRGB/Desktop/photoshopimages/app/src/main/res/layout/configure_dialog.xml"
+    }
+]

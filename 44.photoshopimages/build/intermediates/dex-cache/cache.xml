@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_24a6eed3277846e56c8ca38fec19084b3f8bc8a4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8d4a211ec62546869b063881c78800bb44778d52">
+        <dex dex="/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b82ca33b68e61913de7f4c0d72bcc9e43fb0a02a/classes.dex" />
+    </item>
+
+</items>

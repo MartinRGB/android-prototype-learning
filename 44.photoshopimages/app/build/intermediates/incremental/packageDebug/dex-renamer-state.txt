@@ -1,0 +1,7 @@
+#Wed Mar 08 15:06:36 CST 2017
+base.0=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b82ca33b68e61913de7f4c0d72bcc9e43fb0a02a
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_24a6eed3277846e56c8ca38fec19084b3f8bc8a4/classes.dex
+base.1=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_24a6eed3277846e56c8ca38fec19084b3f8bc8a4
+file.0=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b82ca33b68e61913de7f4c0d72bcc9e43fb0a02a/classes.dex

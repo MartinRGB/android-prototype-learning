@@ -1,0 +1,4 @@
+#Wed Mar 08 18:56:20 CST 2017
+base.0=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
+renamed.0=classes.dex
+file.0=/Users/MartinRGB/Desktop/photoshopimages/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex
