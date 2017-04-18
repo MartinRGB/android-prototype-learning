@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name ="options">
+        <item name ="game">新游戏</item>
+        <item name ="score">排行榜</item>
+        <item name ="player">更改姓名</item>
+        <item name ="sound">开启声音</item>
+        <item name ="data">清除游戏</item>
+    </string-array>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="@dimen/width_medium"
+              android:layout_height="@dimen/height_medium"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/padding_large"
+              android:paddingRight="@dimen/padding_small" >
+
+    <TextView
+        android:id="@+id/playername"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_large"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/padding_large"
+        android:text="乔豆"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/playerscore"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_large"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/padding_large"
+        android:text="75／100"
+        android:textSize="15sp" />
+
+</LinearLayout>

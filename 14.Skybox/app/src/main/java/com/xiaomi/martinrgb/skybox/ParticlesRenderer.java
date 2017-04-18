@@ -106,9 +106,11 @@ public class ParticlesRenderer implements GLSurfaceView.Renderer {
     private void initSkybox(Context context){
         skyboxShaderProgram = new SkyboxShaderProgram(context);
         skybox = new Skybox();
-        skyboxTexture = TextureHelper.loadCubeMap(context,new int[]{R.drawable.left,R.drawable.right,
-                R.drawable.bottom,R.drawable.top,
-                R.drawable.front,R.drawable.back});
+//        skyboxTexture = TextureHelper.loadCubeMap(context,new int[]{R.drawable.left,R.drawable.right,
+//                R.drawable.bottom,R.drawable.top, R.drawable.front,R.drawable.back});
+
+        skyboxTexture = TextureHelper.loadCubeMap(context,new int[]{R.drawable.emptyroom_c00,R.drawable.emptyroom_c01,
+                R.drawable.emptyroom_c02,R.drawable.emptyroom_c03, R.drawable.emptyroom_c04,R.drawable.emptyroom_c05});
     }
 
     private void drawSkybox(){

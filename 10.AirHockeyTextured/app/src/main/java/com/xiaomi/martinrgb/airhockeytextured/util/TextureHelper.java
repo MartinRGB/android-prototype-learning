@@ -24,6 +24,7 @@ import static android.opengl.GLES20.glTexParameteri;
 public class TextureHelper {
     private static final String TAG = "TextureHelper";
 
+
     public static int loadTexture(Context context, int resourceId) {
         //材质ID
         final int[] textureObjectIds = new int[1];

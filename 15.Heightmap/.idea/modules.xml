@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/14.Skybox.iml" filepath="$PROJECT_DIR$/14.Skybox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/15.HeightMap.iml" filepath="$PROJECT_DIR$/15.HeightMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
