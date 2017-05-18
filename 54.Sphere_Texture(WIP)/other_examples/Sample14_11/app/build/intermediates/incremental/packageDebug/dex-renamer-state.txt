@@ -1,0 +1,4 @@
+#Tue May 09 17:02:36 CST 2017
+base.0=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

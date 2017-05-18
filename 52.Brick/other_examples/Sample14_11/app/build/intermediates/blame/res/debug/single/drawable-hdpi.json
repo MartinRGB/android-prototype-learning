@@ -2,5 +2,9 @@
     {
         "merged": "/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/merged/debug/drawable-hdpi/icon.png",
         "source": "/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/src/main/res/drawable-hdpi/icon.png"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/52.Brick/other_examples/Sample14_11/app/build/intermediates/res/merged/debug/drawable-hdpi/icon.png",
+        "source": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/52.Brick/other_examples/Sample14_11/app/src/main/res/drawable-hdpi/icon.png"
     }
 ]

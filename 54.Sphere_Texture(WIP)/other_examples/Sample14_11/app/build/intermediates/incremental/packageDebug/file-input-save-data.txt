@@ -1,0 +1,24 @@
+#Internal package file, do not edit.
+#Tue May 09 16:58:10 CST 2017
+2.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/assets/debug
+5.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+5.set=DEX
+3.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/assets/debug
+6.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_/AndroidManifest.xml
+2.set=ASSET
+4.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_
+count=7
+0.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_/res/layout/main.xml
+5.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+4.set=ANDROID_RESOURCE
+6.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_
+1.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_/resources.arsc
+1.set=ANDROID_RESOURCE
+2.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/assets/debug/vertex.sh
+6.set=ANDROID_RESOURCE
+0.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_
+3.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/assets/debug/frag.sh
+3.set=ASSET
+1.base=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_
+4.file=/Users/MartinRGB/Desktop/OpenGL-ES-3.0-Cookbook-master/SourceRepository/Appendix/Sample14_11/app/build/intermediates/res/resources-debug.ap_/res/drawable-hdpi-v4/icon.png
+0.set=ANDROID_RESOURCE
