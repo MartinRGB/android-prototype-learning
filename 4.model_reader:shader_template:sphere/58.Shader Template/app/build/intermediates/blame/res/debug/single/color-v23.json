@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_default.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_default.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_borderless_text_material.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_thumb.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_switch_thumb.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_switch_track.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_switch_track.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_color_highlight_material.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_color_highlight_material.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_edittext.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_edittext.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_seek_thumb.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_seek_thumb.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_btn_colored_text_material.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_spinner.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_spinner.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/color-v23/abc_tint_btn_checkable.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/color-v23/abc_tint_btn_checkable.xml"
+    }
+]

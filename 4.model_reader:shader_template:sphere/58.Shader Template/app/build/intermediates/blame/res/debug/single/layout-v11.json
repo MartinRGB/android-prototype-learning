@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/anim/abc_popup_exit.xml"
+    }
+]

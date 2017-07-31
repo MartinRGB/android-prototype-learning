@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/raw/simple_fragment_shader.glsl",
+        "source": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/src/main/res/raw/simple_fragment_shader.glsl"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/raw/simple_vertex_shader.glsl",
+        "source": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/src/main/res/raw/simple_vertex_shader.glsl"
+    }
+]

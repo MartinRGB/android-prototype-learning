@@ -1,0 +1,4 @@
+#Tue May 23 17:32:34 CST 2017
+base.0=/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

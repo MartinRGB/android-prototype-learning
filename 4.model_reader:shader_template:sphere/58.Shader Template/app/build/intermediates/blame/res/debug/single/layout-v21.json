@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/MartinRGB/Desktop/Github/android-prototype-learning/58.Shader Template/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/MartinRGB/.android/build-cache/03a5ca8e08525461a986f90d6f824bb927f81324/output/res/layout-v21/notification_template_custom_big.xml"
+    }
+]
